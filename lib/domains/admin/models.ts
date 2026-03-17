@@ -35,11 +35,11 @@ export const auditLogSchema = z.object({
 
   // Event details
   description: z.string(),
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
 
   // Before/after state for critical changes
-  previousState: z.record(z.unknown()).optional(),
-  newState: z.record(z.unknown()).optional(),
+  previousState: z.record(z.string(), z.unknown()).optional(),
+  newState: z.record(z.string(), z.unknown()).optional(),
 
   // Context
   ipAddress: z.string().optional(),
@@ -72,9 +72,9 @@ export const createAuditLogSchema = z.object({
   actorId: uuidSchema.optional(),
   actorRole: z.string().optional() as z.ZodType<UserRole | undefined>,
   description: z.string(),
-  metadata: z.record(z.unknown()).optional(),
-  previousState: z.record(z.unknown()).optional(),
-  newState: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
+  previousState: z.record(z.string(), z.unknown()).optional(),
+  newState: z.record(z.string(), z.unknown()).optional(),
   ipAddress: z.string().optional(),
   userAgent: z.string().optional(),
   requestId: z.string().optional(),

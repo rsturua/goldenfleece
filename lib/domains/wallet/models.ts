@@ -27,7 +27,7 @@ export const walletLinkSchema = z.object({
   isActive: z.boolean().default(true),
   disconnectedAt: z.date().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

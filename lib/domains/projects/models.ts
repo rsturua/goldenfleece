@@ -41,7 +41,7 @@ export const projectSchema = z.object({
   documents: z.array(z.string()).default([]),
   videoUrl: z.string().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -74,7 +74,7 @@ export const offeringSchema = z.object({
   isActive: z.boolean().default(true),
   isClosed: z.boolean().default(false),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

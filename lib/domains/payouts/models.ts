@@ -38,7 +38,7 @@ export const payoutCycleSchema = z.object({
   distributionTxHash: z.string().optional(),
   distributionBlockNumber: z.bigint().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -74,7 +74,7 @@ export const payoutRecordSchema = z.object({
   txHash: z.string().optional(),
   blockNumber: z.bigint().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

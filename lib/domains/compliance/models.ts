@@ -51,9 +51,9 @@ export const kycProfileSchema = z.object({
   rejectionReason: z.string().optional(),
   rejectionCode: z.string().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
-  updated At: z.date(),
+  updatedAt: z.date(),
 });
 
 export type KycProfile = z.infer<typeof kycProfileSchema>;
@@ -91,7 +91,7 @@ export const eligibilityStateSchema = z.object({
   statusChangedAt: z.date(),
   statusChangedBy: uuidSchema.optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

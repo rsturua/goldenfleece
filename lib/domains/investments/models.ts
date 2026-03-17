@@ -32,7 +32,7 @@ export const investmentSchema = z.object({
   cancelledAt: z.date().optional(),
   refundedAt: z.date().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -60,7 +60,7 @@ export const portfolioPositionSchema = z.object({
   isActive: z.boolean().default(true),
   closedAt: z.date().optional(),
 
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
