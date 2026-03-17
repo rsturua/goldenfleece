@@ -10,7 +10,7 @@ import { AdminService } from '@/lib/domains/admin/service';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createClient();
@@ -29,7 +29,7 @@ export async function POST(
       );
     }
 
-    const investmentId = params.id;
+    const { id: investmentId } = await params;
 
     // Complete investment
     const investment = await InvestmentsService.completeInvestment(investmentId);

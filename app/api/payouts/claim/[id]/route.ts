@@ -9,7 +9,7 @@ import { PayoutsService } from '@/lib/domains/payouts/service';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createClient();
@@ -19,7 +19,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const payoutRecordId = params.id;
+    const { id: payoutRecordId } = await params;
 
     // Claim payout
     const payoutRecord = await PayoutsService.claimPayout(payoutRecordId, user.id);
