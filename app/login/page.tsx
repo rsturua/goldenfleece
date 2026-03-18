@@ -51,6 +51,18 @@ export default function LoginPage() {
       if (error) throw error;
 
       if (data.user) {
+        // Log login event for audit trail
+        try {
+          await fetch('/api/auth/log-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ provider: 'email' }),
+          });
+        } catch (logError) {
+          console.error('Failed to log login event:', logError);
+          // Don't block login flow if logging fails
+        }
+
         router.push("/dashboard");
         router.refresh();
       }

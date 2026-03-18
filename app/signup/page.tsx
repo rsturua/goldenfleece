@@ -86,6 +86,19 @@ export default function SignupPage() {
 
       if (data.user) {
         setSuccess(true);
+
+        // Log signup event for audit trail
+        try {
+          await fetch('/api/auth/log-signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ provider: 'email' }),
+          });
+        } catch (logError) {
+          console.error('Failed to log signup event:', logError);
+          // Don't block signup flow if logging fails
+        }
+
         // Redirect to dashboard
         setTimeout(() => {
           router.push("/dashboard");
