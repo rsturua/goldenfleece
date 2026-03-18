@@ -282,42 +282,22 @@ Based on the Gold coin document, the platform emphasizes:
 
 ## Deployment
 
-### Deploying to Vercel (Recommended)
+### 🚀 Deploy to Vercel
 
-Vercel is the best platform for Next.js apps with zero-config deployment:
+Vercel is the recommended platform for deploying Next.js applications.
 
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
+**Quick Start:**
+1. Visit [vercel.com/new](https://vercel.com/new)
+2. Import repository: `rsturua/goldenfleece`
+3. Add environment variables
+4. Deploy!
 
-2. **Import to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Import your GitHub repository
-   - Vercel auto-detects Next.js settings
+**📖 Complete Deployment Guide:** See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions, troubleshooting, and best practices.
 
-3. **Add Environment Variables**
-   In Vercel dashboard → Settings → Environment Variables:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_walletconnect_id
-   ```
-
-4. **Deploy**
-   - Click "Deploy"
-   - Vercel will build and deploy automatically
-   - Get your production URL!
-
-### Other Deployment Options
-
-- **Netlify**: Good alternative with drag-and-drop
-- **AWS Amplify**: For AWS ecosystem integration
-- **Railway**: Easy deployment with free tier
-- **Render**: Simple hosting with auto-deploy
+**Environment Variables Required:**
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`
 
 ## Brand Assets
 
