@@ -84,6 +84,7 @@ export class AdminService {
       eventType: 'admin_action',
       userId,
       actorId: grantedBy,
+      actorRole: 'admin',
       description: `Role ${role} granted to user`,
       metadata: { role },
     });
@@ -113,6 +114,7 @@ export class AdminService {
       eventType: 'admin_action',
       userId,
       actorId: revokedBy,
+      actorRole: 'admin',
       description: `Role ${role} revoked from user`,
       metadata: { role },
     });
