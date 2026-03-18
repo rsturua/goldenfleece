@@ -56,13 +56,14 @@ export class InvestmentsService {
 
     if (error) throw error;
 
-    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
-    // await createAuditLog({
-    //   eventType: 'investment_created',
-    //   userId: input.userId,
-    //   description: `Investment of ${input.amount} for ${input.tokensPurchased} tokens created`,
-    //   metadata: { projectId: input.projectId, amount: input.amount, tokens: input.tokensPurchased },
-    // });
+    // Audit log
+    await createAuditLog({
+      eventType: 'investment_created',
+      userId: input.userId,
+      actorRole: 'user',
+      description: `Investment of ${input.amount} for ${input.tokensPurchased} tokens created`,
+      metadata: { projectId: input.projectId, amount: input.amount, tokens: input.tokensPurchased },
+    });
 
     return data as Investment;
   }
@@ -87,13 +88,14 @@ export class InvestmentsService {
 
     const investment = data as Investment;
 
-    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
-    // await createAuditLog({
-    //   eventType: 'investment_completed',
-    //   userId: investment.userId,
-    //   description: `Investment ${investmentId} completed`,
-    //   metadata: { investmentId, amount: investment.amount },
-    // });
+    // Audit log
+    await createAuditLog({
+      eventType: 'investment_completed',
+      userId: investment.userId,
+      actorRole: 'admin',
+      description: `Investment ${investmentId} completed`,
+      metadata: { investmentId, amount: investment.amount },
+    });
 
     return investment;
   }
