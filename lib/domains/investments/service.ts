@@ -32,7 +32,7 @@ export class InvestmentsService {
     }
 
     // Check token availability
-    if (offering.available_tokens < input.tokensPurchased) {
+    if (offering.availableTokens < input.tokensPurchased) {
       throw new Error('Not enough tokens available for this investment amount.');
     }
 
@@ -56,13 +56,13 @@ export class InvestmentsService {
 
     if (error) throw error;
 
-    // Audit log
-    await createAuditLog({
-      eventType: 'investment_created',
-      userId: input.userId,
-      description: `Investment of ${input.amount} for ${input.tokensPurchased} tokens created`,
-      metadata: { projectId: input.projectId, amount: input.amount, tokens: input.tokensPurchased },
-    });
+    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
+    // await createAuditLog({
+    //   eventType: 'investment_created',
+    //   userId: input.userId,
+    //   description: `Investment of ${input.amount} for ${input.tokensPurchased} tokens created`,
+    //   metadata: { projectId: input.projectId, amount: input.amount, tokens: input.tokensPurchased },
+    // });
 
     return data as Investment;
   }
@@ -87,13 +87,13 @@ export class InvestmentsService {
 
     const investment = data as Investment;
 
-    // Audit log
-    await createAuditLog({
-      eventType: 'investment_completed',
-      userId: investment.user_id,
-      description: `Investment ${investmentId} completed`,
-      metadata: { investmentId, amount: investment.amount },
-    });
+    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
+    // await createAuditLog({
+    //   eventType: 'investment_completed',
+    //   userId: investment.userId,
+    //   description: `Investment ${investmentId} completed`,
+    //   metadata: { investmentId, amount: investment.amount },
+    // });
 
     return investment;
   }

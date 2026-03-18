@@ -88,14 +88,14 @@ export class ProjectsService {
     if (!offering) return false;
 
     const now = new Date();
-    const offeringStart = new Date(offering.offering_start_date);
-    const offeringEnd = new Date(offering.offering_end_date);
+    const offeringStart = new Date(offering.offeringStartDate);
+    const offeringEnd = new Date(offering.offeringEndDate);
 
     return (
       project.status === 'funding' &&
-      offering.is_active &&
-      !offering.is_closed &&
-      offering.available_tokens > 0 &&
+      offering.isActive &&
+      !offering.isClosed &&
+      offering.availableTokens > 0 &&
       now >= offeringStart &&
       now <= offeringEnd
     );

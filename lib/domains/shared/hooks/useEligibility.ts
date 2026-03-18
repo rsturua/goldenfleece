@@ -56,12 +56,12 @@ export function useEligibility(): EligibilityCheck {
   const requiredSteps = getRequiredSteps(eligibility?.status || 'registered');
 
   return {
-    isEligible: eligibility?.can_invest === true,
+    isEligible: eligibility?.canInvest === true,
     status: eligibility?.status || 'registered',
-    canInvest: eligibility?.can_invest === true,
-    canWithdraw: eligibility?.can_withdraw === true,
-    canReceiveDividends: eligibility?.can_receive_dividends === true,
-    restrictionReason: eligibility?.restriction_reason,
+    canInvest: eligibility?.canInvest === true,
+    canWithdraw: eligibility?.canWithdraw === true,
+    canReceiveDividends: eligibility?.canReceiveDividends === true,
+    restrictionReason: eligibility?.restrictionReason,
     requiredSteps,
     isLoading,
   };

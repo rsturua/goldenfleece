@@ -47,8 +47,8 @@ export class PortfolioService {
   }> {
     const positions = await this.getUserPortfolio(userId);
 
-    const totalInvested = positions.reduce((sum, p) => sum + Number(p.total_invested), 0);
-    const totalDividends = positions.reduce((sum, p) => sum + Number(p.total_dividends_received), 0);
+    const totalInvested = positions.reduce((sum, p) => sum + Number(p.totalInvested), 0);
+    const totalDividends = positions.reduce((sum, p) => sum + Number(p.totalDividendsReceived), 0);
     const totalReturn = totalDividends; // TODO: Add unrealized gains when we have market prices
     const returnPercentage = totalInvested > 0 ? (totalReturn / totalInvested) * 100 : 0;
 

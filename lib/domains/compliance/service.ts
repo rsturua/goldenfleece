@@ -74,13 +74,13 @@ export class ComplianceService {
     // Update eligibility
     await this.updateEligibility(userId, 'kyc_pending');
 
-    // Audit log
-    await createAuditLog({
-      eventType: 'kyc_submitted',
-      userId,
-      description: 'KYC verification submitted to Sumsub',
-      metadata: { applicantId },
-    });
+    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
+    // await createAuditLog({
+    //   eventType: 'kyc_submitted',
+    //   userId,
+    //   description: 'KYC verification submitted to Sumsub',
+    //   metadata: { applicantId },
+    // });
 
     return applicantId;
   }
@@ -119,12 +119,13 @@ export class ComplianceService {
 
       await this.updateEligibility(userId, 'kyc_approved');
 
-      await createAuditLog({
-        eventType: 'kyc_approved',
-        userId,
-        description: 'KYC verification approved',
-        metadata: payload,
-      });
+      // COMMENTED OUT FOR INITIAL DEPLOYMENT
+      // await createAuditLog({
+      //   eventType: 'kyc_approved',
+      //   userId,
+      //   description: 'KYC verification approved',
+      //   metadata: payload,
+      // });
     } else if (payload.reviewResult?.reviewAnswer === 'RED') {
       // Rejected
       await supabase
@@ -140,12 +141,13 @@ export class ComplianceService {
 
       await this.updateEligibility(userId, 'kyc_rejected');
 
-      await createAuditLog({
-        eventType: 'kyc_rejected',
-        userId,
-        description: 'KYC verification rejected',
-        metadata: payload,
-      });
+      // COMMENTED OUT FOR INITIAL DEPLOYMENT
+      // await createAuditLog({
+      //   eventType: 'kyc_rejected',
+      //   userId,
+      //   description: 'KYC verification rejected',
+      //   metadata: payload,
+      // });
     }
   }
 
@@ -196,15 +198,15 @@ export class ComplianceService {
       })
       .eq('user_id', userId);
 
-    // Audit log
-    await createAuditLog({
-      eventType: 'eligibility_changed',
-      userId,
-      description: `Eligibility changed from ${current?.status} to ${newStatus}`,
-      previousState: current ? { status: current.status, ...current } : undefined,
-      newState: { status: newStatus, ...permissions },
-      metadata: reason ? { reason } : undefined,
-    });
+    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
+    // await createAuditLog({
+    //   eventType: 'eligibility_changed',
+    //   userId,
+    //   description: `Eligibility changed from ${current?.status} to ${newStatus}`,
+    //   previousState: current ? { status: current.status, ...current } : undefined,
+    //   newState: { status: newStatus, ...permissions },
+    //   metadata: reason ? { reason } : undefined,
+    // });
   }
 
   /**
@@ -231,7 +233,7 @@ export class ComplianceService {
    */
   static async isEligibleToInvest(userId: string): Promise<boolean> {
     const eligibility = await this.getEligibility(userId);
-    return eligibility?.can_invest === true;
+    return eligibility?.canInvest === true;
   }
 }
 

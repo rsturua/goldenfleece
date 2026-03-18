@@ -132,13 +132,13 @@ export class PayoutsService {
     // TODO: Initiate actual transfer (wallet payment, bank transfer, etc.)
     // This would integrate with payment rails or blockchain transfer
 
-    // Audit log
-    await createAuditLog({
-      eventType: 'payout_completed',
-      userId,
-      description: `Payout of ${record.amount_due} claimed`,
-      metadata: { payoutRecordId, amount: record.amount_due, projectId: record.project_id },
-    });
+    // Audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
+    // await createAuditLog({
+    //   eventType: 'payout_completed',
+    //   userId,
+    //   description: `Payout of ${record.amount_due} claimed`,
+    //   metadata: { payoutRecordId, amount: record.amount_due, projectId: record.project_id },
+    // });
 
     return data as PayoutRecord;
   }

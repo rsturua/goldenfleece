@@ -259,12 +259,12 @@ export class PlaceholderTokenizationService implements ITokenizationService {
   }
 
   async getBalance(): Promise<bigint> {
-    // For now, return 0n
-    return 0n;
+    // For now, return 0
+    return BigInt(0);
   }
 
   async getTotalSupply(): Promise<bigint> {
-    return 0n;
+    return BigInt(0);
   }
 }
 
