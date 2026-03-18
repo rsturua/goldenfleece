@@ -53,13 +53,14 @@ export class WalletService {
     // Update eligibility state
     await updateEligibilityOnWalletChange(input.userId, 'wallet_connected');
 
-    // Create audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
-    // await createAuditLog({
-    //   eventType: 'wallet_linked',
-    //   userId: input.userId,
-    //   description: `Wallet ${input.walletAddress} connected`,
-    //   metadata: { walletAddress: input.walletAddress, chainId: input.chainId },
-    // });
+    // Create audit log
+    await createAuditLog({
+      eventType: 'wallet_linked',
+      userId: input.userId,
+      actorRole: 'user',
+      description: `Wallet ${input.walletAddress} connected`,
+      metadata: { walletAddress: input.walletAddress, chainId: input.chainId },
+    });
 
     return data as WalletLink;
   }
@@ -114,13 +115,14 @@ export class WalletService {
     // Update eligibility state
     await updateEligibilityOnWalletChange(walletLink.user_id, 'wallet_verified');
 
-    // Create audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
-    // await createAuditLog({
-    //   eventType: 'wallet_verified',
-    //   userId: walletLink.user_id,
-    //   description: `Wallet ${walletLink.wallet_address} verified`,
-    //   metadata: { walletAddress: walletLink.wallet_address },
-    // });
+    // Create audit log
+    await createAuditLog({
+      eventType: 'wallet_verified',
+      userId: walletLink.user_id,
+      actorRole: 'user',
+      description: `Wallet ${walletLink.wallet_address} verified`,
+      metadata: { walletAddress: walletLink.wallet_address },
+    });
 
     return data as WalletLink;
   }
@@ -166,11 +168,12 @@ export class WalletService {
     // Update eligibility state
     await updateEligibilityOnWalletChange(userId, 'registered');
 
-    // Create audit log - COMMENTED OUT FOR INITIAL DEPLOYMENT
-    // await createAuditLog({
-    //   eventType: 'wallet_unlinked',
-    //   userId,
-    //   description: 'Wallet disconnected',
-    // });
+    // Create audit log
+    await createAuditLog({
+      eventType: 'wallet_unlinked',
+      userId,
+      actorRole: 'user',
+      description: 'Wallet disconnected',
+    });
   }
 }
