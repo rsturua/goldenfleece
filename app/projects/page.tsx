@@ -201,7 +201,7 @@ function ProjectsContent() {
               <div
                 key={project.id}
                 ref={(el) => { projectRefs.current[project.id] = el; }}
-                className={`group glass rounded-2xl overflow-hidden border transition-all duration-500 hover-lift ${
+                className={`group glass rounded-2xl overflow-hidden border transition-all duration-500 hover-lift flex flex-col h-full ${
                   highlightedProject === project.id
                     ? 'border-gold shadow-2xl shadow-gold/50 scale-105'
                     : 'border-gold/20 hover:border-gold/40'
@@ -236,7 +236,7 @@ function ProjectsContent() {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors">
                     {project.name}
                   </h3>
@@ -247,7 +247,7 @@ function ProjectsContent() {
                     </svg>
                     {project.location}
                   </p>
-                  <p className="text-gray-300 text-sm mb-6 line-clamp-2 leading-relaxed">{project.description}</p>
+                  <p className="text-gray-300 text-sm mb-6 line-clamp-3 leading-relaxed">{project.description}</p>
 
                   {/* Funding Progress */}
                   {project.status === "Funding" && (
@@ -302,7 +302,7 @@ function ProjectsContent() {
 
                   {/* CTA Button */}
                   <button
-                    className={`w-full font-bold py-3.5 px-6 rounded-xl transition-all duration-300 ${
+                    className={`w-full font-bold py-3.5 px-6 rounded-xl transition-all duration-300 mt-auto ${
                       project.status === "Funding"
                         ? "bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-navy shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-[1.02]"
                         : "bg-gray-700/50 text-gray-400 cursor-not-allowed"
