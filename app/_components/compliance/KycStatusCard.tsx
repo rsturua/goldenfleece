@@ -79,7 +79,7 @@ export function KycStatusCard() {
     },
     rejected: {
       title: 'KYC Rejected',
-      description: kycProfile?.rejection_reason || 'Please review the issues and resubmit',
+      description: kycProfile?.rejectionReason || 'Please review the issues and resubmit',
       color: 'red',
       icon: '❌',
     },
@@ -115,31 +115,31 @@ export function KycStatusCard() {
           {/* Metadata */}
           {kycProfile && (
             <div className="space-y-2 text-sm">
-              {kycProfile.submitted_at && (
+              {kycProfile.submittedAt && (
                 <div className="flex gap-2">
                   <span className="text-gray-400">Submitted:</span>
-                  <span className="text-white">{new Date(kycProfile.submitted_at).toLocaleDateString()}</span>
+                  <span className="text-white">{new Date(kycProfile.submittedAt).toLocaleDateString()}</span>
                 </div>
               )}
 
-              {kycProfile.approved_at && (
+              {kycProfile.approvedAt && (
                 <div className="flex gap-2">
                   <span className="text-gray-400">Approved:</span>
-                  <span className="text-green-400">{new Date(kycProfile.approved_at).toLocaleDateString()}</span>
+                  <span className="text-green-400">{new Date(kycProfile.approvedAt).toLocaleDateString()}</span>
                 </div>
               )}
 
-              {kycProfile.rejected_at && (
+              {kycProfile.rejectedAt && (
                 <div className="flex gap-2">
                   <span className="text-gray-400">Rejected:</span>
-                  <span className="text-red-400">{new Date(kycProfile.rejected_at).toLocaleDateString()}</span>
+                  <span className="text-red-400">{new Date(kycProfile.rejectedAt).toLocaleDateString()}</span>
                 </div>
               )}
 
-              {kycProfile.provider_applicant_id && (
+              {kycProfile.providerApplicantId && (
                 <div className="flex gap-2">
                   <span className="text-gray-400">Application ID:</span>
-                  <span className="text-white font-mono text-xs">{kycProfile.provider_applicant_id}</span>
+                  <span className="text-white font-mono text-xs">{kycProfile.providerApplicantId}</span>
                 </div>
               )}
             </div>
